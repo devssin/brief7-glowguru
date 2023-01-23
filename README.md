@@ -5,4 +5,8 @@
 
 ![Use case](./uml/Usecase.jpg)
 
+
+<br>
+
+## Diagramme de Class :
 ![Class](./uml/Class.jpg)
