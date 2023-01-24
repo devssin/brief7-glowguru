@@ -18,6 +18,25 @@ class Product
         return $this->db->resultSet();
     }
 
+    public function getProductsByCategory($id)
+    {
+        $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 
+        product.description as 'description' , product.price as 'price' ,
+        category.name_cat as 'category' from product JOIN category on product.id = category.id where product.id_cat = :id");
+        $this->db->bind(':id', intval($id));
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
+    public function getProductsByName($name)
+    {
+        $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 
+        product.description as 'description' , product.price as 'price' ,
+        category.name_cat as 'category' from product JOIN category on product.id = category.id where product.name like '%$name%'");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
     public function getSingleProduct($id)
     {
         $this->db->query("SELECT product.id as 'id', product.name as 'name', product.image as 'image', product.price as 'price' , 

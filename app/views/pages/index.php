@@ -1,9 +1,6 @@
 <?php require APPROOT . "/views/inc/header.php"; ?>
 
-<div class="max-w-lg mx-auto absolute top-0 left-20  z-10 ">
-    <?php flash("login_success") ?>
 
-</div>
 <!-- Hero section -->
 <div id="indicators-carousel" class="relative" data-carousel="slide" interval="2000">
     <!-- Carousel wrapper -->
@@ -42,7 +39,7 @@
 
 <!-- About us section -->
 
-<section>
+<section id="about">
     <div class="md:max-w-5xl mx-auto  py-10">
         <h2 class="text-3xl font-medium text-center uppercase"> About us</h2>
         <div class="flex flex-col md:flex-row justify-between mt-10 gap-6 px-5 sm:px-0">

@@ -19,12 +19,12 @@
 <div class="containner py-10 bg-gray-100">
     <!-- Sorting -->
     <div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
-        <select name="sorting" id="sort" class="w-44 text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary ">
+        <select name="sorting" id="" class="w-44 text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary ">
             <option value="0">Categories</option>
-            <?php foreach($data['categories'] as $category): ?>
-                <option value="<?= $category->id?>"><?= $category->name_cat?></option>
+            <?php foreach ($data['categories'] as $category) : ?>
+                <option value="<?= $category->id ?>"><?= $category->name_cat ?></option>
             <?php endforeach; ?>
-               
+
         </select>
 
 
@@ -48,28 +48,27 @@
 
     </div>
     <!-- Sorting end -->
-
     <div class="grid md:grid-cols-4 gap-6 mt-10">
         <!-- Single Product -->
-        <?php foreach($data['products'] as $product ): ?>
-        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow group hover:scale-105 transition duration-150 overflow-hidden">
-            <a href="<?=URLROOT?>/shop/product/<?=$product->id?>" class="relative ">
-                <img class="rounded-t-lg group-hover:scale-105 transistion duration-100 max-h-[200px] w-full" src="<?= $product->image?>" alt="product image" />
-                <div class="bg-primary bg-opacity-0 w-full h-full group-hover:bg-opacity-40 transistion duration-100 absolute inset-0 rounded-t-lg"></div>
-            </a>
-            <div class="px-5 pb-5 mt-4">
-                <a href="#">
-                    <h5 class="text-md font-semibold tracking-tight "><?= $product->name?></h5>
+        <?php foreach ($data['products'] as $product) : ?>
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow group hover:scale-105 transition duration-150 overflow-hidden">
+                <a href="<?= URLROOT ?>/shop/product/<?= $product->id ?>" class="relative ">
+                    <img class="rounded-t-lg group-hover:scale-105 transistion duration-100 max-h-[200px] w-full" src="<?= $product->image ?>" alt="product image" />
+                    <div class="bg-primary bg-opacity-0 w-full h-full group-hover:bg-opacity-40 transistion duration-100 absolute inset-0 rounded-t-lg"></div>
                 </a>
+                <div class="px-5 pb-5 mt-4">
+                    <a href="#">
+                        <h5 class="text-md font-semibold tracking-tight "><?= $product->name ?></h5>
+                    </a>
 
-                <div class="flex items-center justify-between mt-4">
-                    <span class="text-xl font-bold text-gray-900 ">$<?= $product->price?></span>
-                    <a href="<?= URLROOT ?>/shop/product/<?= $product->id?>" class="text-white font-medium rounded-lg text-sm bg-primary hover:bg-sec transition duration-100 px-5 py-2 ">View </a>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-xl font-bold text-gray-900 ">$<?= $product->price ?></span>
+                        <a href="<?= URLROOT ?>/shop/product/<?= $product->id ?>" class="text-white font-medium rounded-lg text-sm bg-primary hover:bg-sec transition duration-100 px-5 py-2 ">View </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <?php endforeach;?>
+        <?php endforeach; ?>
         <!-- End Single Product -->
     </div>
 </div>

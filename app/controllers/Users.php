@@ -38,11 +38,9 @@ class Users extends Controller{
                 if($loggedInUser){
                     //Create session 
                     flash('login_success', "You are now logged in");
-                    $this->createUserSession($loggedInUser->username);
-                    $username = $_SESSION['usename'];
                     $this->createUserSession($loggedInUser);
+                    
 
-                    die('success');
                 }else{
                     $data['password_err'] = "Password is incorrect";
                     $this->view('users/login',$data);
@@ -67,8 +65,9 @@ class Users extends Controller{
 
     public function createUserSession($user)
     {
-        $_SESSION['username'] = $user;
-        redirect('pages');
+        $_SESSION['username'] = $user->username;
+        $_SESSION['user_id'] = $user->id;
+        redirect('dashboard');
     }
 
     public function logout(){

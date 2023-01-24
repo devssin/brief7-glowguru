@@ -2,6 +2,7 @@
 
 <div class="containner py-16 bg-gray-100">
     <div class="max-w-lg mx-auto shadow-lg bg-white rounded-md px-6 py-4 overflow-hidden">
+        <?php flash('not_logged'); ?>
         <h2 class="text-center text-2xl font-semibold text-gray-700 mb-2">Welcome to admin space </h2>
         <p class="text-sm text-gray-500 text-center">Login if you are an admin</p>
 

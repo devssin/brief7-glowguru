@@ -13,14 +13,7 @@ class Pages extends Controller {
         $products = $this->productModel->getProducts();
         $data = [
             'products' => array_slice($products, 0, 8),
-            'title' => 'Welcome',
         ];
         $this->view("pages/index", $data);
-    }
-    public function about(){
-        $data = [
-            'title' => 'About us',
-        ];
-        $this->view('pages/about', $data);
     }
 }
