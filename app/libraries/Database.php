@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* 
     * PDO Database Class
@@ -9,7 +9,8 @@
 
 */
 
-class Database{
+class Database
+{
     private $host = DB_HOST;
     private $port = PORT;
     private $user = DB_USER;
@@ -42,15 +43,16 @@ class Database{
     }
 
     // Prepare Statement with query
-    public function query($sql){
+    public function query($sql)
+    {
         $this->stmt = $this->dbh->prepare($sql);
-
     }
 
     //Bind values 
-    public function bind($param , $value, $type = null ){
-        if(is_null($type)){
-            switch(true){
+    public function bind($param, $value, $type = null)
+    {
+        if (is_null($type)) {
+            switch (true) {
                 case is_int($value):
                     $type = PDO::PARAM_INT;
                     break;
@@ -60,20 +62,19 @@ class Database{
                 case is_null($value):
                     $type = PDO::PARAM_NULL;
                     break;
-                default : 
+                default:
                     $type = PDO::PARAM_STR;
             }
         }
 
 
         $this->stmt->bindValue($param, $value, $type);
-
     }
 
     //execute prepared statement
     public function execute()
     {
-       return $this->stmt->execute();
+        return $this->stmt->execute();
     }
 
 

@@ -1,14 +1,14 @@
 CREATE DATABASE glowguru;
 USE glowguru;
 
-CREATE TABLE admin(
+CREATE TABLE users(
     id int PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255)
 );
 
-INSERT INTO admin (username, email, password) VALUES ('nissay', 'yassin.aaynealhayate@gmail.com', '$2y$10$XX5EDjJ7PCVyaX7HIwPAJ.cFCykThrVidOCoji.NJ86uVxidLR/Ea');
+INSERT INTO users (username, email, password) VALUES ('nissay', 'yassin.aaynealhayate@gmail.com', '$2y$10$XX5EDjJ7PCVyaX7HIwPAJ.cFCykThrVidOCoji.NJ86uVxidLR/Ea');
 
 CREATE TABLE category(
     id int PRIMARY KEY AUTO_INCREMENT, 
@@ -24,12 +24,12 @@ CREATE TABLE product (
     id int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     image VARCHAR(255),
+    price DECIMAL,
     description VARCHAR(500),
     id_cat int,
-    Foreign Key (id_cat) REFERENCES category(id)
+    Foreign Key (id_cat) REFERENCES category(id) ON DELETE SET NULL
 );
 
 
 ALTER TABLE category ADD COLUMN image VARCHAR(255) AFTER name_cat;
 
-ALTER TABLE product ADD COLUMN price DECIMAL AFTER image;

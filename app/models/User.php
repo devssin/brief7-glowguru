@@ -23,7 +23,7 @@ class User{
 
     public function login($username, $password)
     {
-        $this->db->query("SELECT * FROM admin WHERE username = :username");
+        $this->db->query("SELECT * FROM users WHERE username = :username");
         $this->db->bind('username', $username);
 
         $this->db->execute();
@@ -40,7 +40,7 @@ class User{
     // Check if user email is already taken 
     public function findUserByUsername($username)
     {
-        $this->db->query('SELECT * FROM admin WHERE username = :username');
+        $this->db->query('SELECT * FROM users WHERE username = :username');
         $this->db->bind('username', $username);
 
         $row = $this->db->single();

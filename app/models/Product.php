@@ -13,7 +13,7 @@ class Product
     {
         $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 
         product.description as 'description' , product.price as 'price' ,
-        category.name_cat as 'category' from product JOIN category on product.id = category.id");
+        category.name_cat as 'category' from product JOIN category on product.id_cat = category.id");
         $this->db->execute();
         return $this->db->resultSet();
     }
@@ -22,7 +22,7 @@ class Product
     {
         $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 
         product.description as 'description' , product.price as 'price' ,
-        category.name_cat as 'category' from product JOIN category on product.id = category.id where product.id_cat = :id");
+        category.name_cat as 'category' from product JOIN category on product.id_cat = category.id where product.id_cat = :id");
         $this->db->bind(':id', intval($id));
         $this->db->execute();
         return $this->db->resultSet();
@@ -32,7 +32,7 @@ class Product
     {
         $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 
         product.description as 'description' , product.price as 'price' ,
-        category.name_cat as 'category' from product JOIN category on product.id = category.id where product.name like '%$name%'");
+        category.name_cat as 'category' from product JOIN category on product.id_cat = category.id where product.name like '%$name%'");
         $this->db->execute();
         return $this->db->resultSet();
     }
@@ -41,7 +41,7 @@ class Product
     {
         $this->db->query("SELECT product.id as 'id', product.name as 'name', product.image as 'image', product.price as 'price' , 
         product.description as 'description' , product.price as 'price' ,
-        category.name_cat as 'category' from product JOIN category on product.id = category.id WHERE product.id = :id");
+        category.name_cat as 'category' from product JOIN category on product.id_cat = category.id WHERE product.id = :id");
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->single();
@@ -51,7 +51,7 @@ class Product
 
     public function addProduct($product)
     {
-        $this->db->query("INSERT INTO products(name , image ,price, description , id_cat) VALUES (:name , :image ,:price, :description , :id_cat)");
+        $this->db->query("INSERT INTO product(name , image ,price, description , id_cat) VALUES (:name , :image ,:price, :description , :id_cat)");
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['imagePath']);
         $this->db->bind("price", floatval($product['price']));
@@ -66,7 +66,7 @@ class Product
 
     public function edit($product)
     {
-        $this->db->query('UPDATE products SET name = :name , image = :image ,price = :price ,description = :description , id_cat = :id_cat  WHERE id_prod = :id');
+        $this->db->query('UPDATE product SET name = :name , image = :image ,price = :price ,description = :description , id_cat = :id_cat  WHERE id = :id');
         $this->db->bind('id', intval($product['id']));
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['imagePath']);
@@ -82,7 +82,7 @@ class Product
 
     public function delete($id)
     {
-        $this->db->query('DELETE FROM products WHERE id_prod = :id');
+        $this->db->query('DELETE FROM product WHERE id = :id');
         $this->db->bind('id', intval($id));
         $this->db->execute();
         if ($this->db->rowCount() < 1) {
