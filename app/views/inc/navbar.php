@@ -1,8 +1,10 @@
 <nav class="bg-white px-2 sm:px-4 py-2.5 sticky w-full z-10 top-0 left-0 border-b border-gray-200">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="<?=URLROOT?>" class="flex items-center">
+    <a href="<?= URLROOT ?>" class="flex items-center">
       <img src="<?= URLROOT ?>/public/img/logo.png" class="h-8 mr-3 md:h-12" alt="Logo">
-      <span class="self-center text-xl font-semibold whitespace-nowrap hidden md:block">GlowGuru</span>
+      <h3 class="self-center  text-xl font-semibold whitespace-nowrap hidden md:block group ">
+        <span class="text-black group-hover:text-[#ebbb89] transition duration-200">Glow</span><span class="text-primary group-hover:text-black transition duration-200">Guru</span>
+      </h3>
     </a>
     <div class="flex md:order-2">
       <?php if (isLoggedIn()) : ?>
@@ -20,13 +22,13 @@
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
       <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
         <li>
-          <a href="<?=URLROOT?>" class="block py-2 pl-3 pr-4 hover:text-primary  bg-sec rounded md:bg-transparent md:p-0" aria-current="page">Home</a>
+          <a href="<?= URLROOT ?>" class="block py-2 pl-3 pr-4 hover:text-primary  bg-sec rounded md:bg-transparent md:p-0" aria-current="page">Home</a>
         </li>
         <li>
-          <a href="<?=URLROOT ?>/#about" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">About</a>
+          <a href="<?= URLROOT ?>/#about" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">About</a>
         </li>
         <li>
-          <a href="<?=URLROOT?>/shop" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">Shop</a>
+          <a href="<?= URLROOT ?>/shop" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">Shop</a>
         </li>
         <li>
           <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">Services</a>
@@ -34,7 +36,7 @@
 
         <?php if (isLoggedIn()) : ?>
           <li>
-            <a href="<?=URLROOT?>/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">Dashboard</a>
+            <a href="<?= URLROOT ?>/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">Dashboard</a>
           </li>
         <?php endif; ?>
 
