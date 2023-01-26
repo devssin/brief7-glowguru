@@ -8,12 +8,9 @@ class Users extends Controller{
 
     public function login(){
 
-        // Check the request method
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //process form
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            //process form
             $data = [
                 'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
@@ -21,7 +18,6 @@ class Users extends Controller{
                 'password_err' => '',
             ];
 
-            //Validate username
             if (empty($data['username'])) {
                 $data['username_err'] = 'username must be filled';
             }
@@ -36,7 +32,6 @@ class Users extends Controller{
             if (empty($data['username_err']) && empty($data['password_err'])) {
                 $loggedInUser = $this->userModel->login($data['username'], $data['password']);
                 if($loggedInUser){
-                    //Create session 
                     flash('login_success', "You are now logged in");
                     $this->createUserSession($loggedInUser);
                     
@@ -46,19 +41,16 @@ class Users extends Controller{
                     $this->view('users/login',$data);
                 }
             } else {
-                // Load view with errors 
                 $this->view('users/login', $data);
             }
         } else {
 
-            //init data 
             $data = [
                 'username' => '',
                 'password' => '',
                 'username_err' => '',
                 'password_err' => '',
             ];
-            //load form
             $this->view('users/login', $data);
         }
     }

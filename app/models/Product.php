@@ -17,7 +17,12 @@ class Product
         $this->db->execute();
         return $this->db->resultSet();
     }
-
+    public function getTotal()
+    {
+        $this->db->query("SELECT COUNT(*) as 'totalProd' from product");
+        $this->db->execute();
+        return $this->db->single();
+    }
     public function getProductsByCategory($id)
     {
         $this->db->query("SELECT product.id as 'id' , product.name as 'name', product.image as 'image', product.price as 'price' , 

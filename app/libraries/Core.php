@@ -1,10 +1,4 @@
 <?php
-/*
-        * App Core Class
-        * Ctreates URL And Loads core Controller  
-        * URL Format - /controller/method/params
-    */
-
 class Core
 {
     protected $currentController = 'Pages';

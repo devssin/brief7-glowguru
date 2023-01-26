@@ -25,6 +25,32 @@ $(document).ready(function () {
     })
   })
 
+  $('#shopSort').change(function () {
+    const cat_id = $('#shopSort').val()
+    $.ajax({
+      url: `http://localhost/glowguru/shop/category/${cat_id}`,
+      type: 'GET',
+      success: function (data) {
+        const products = JSON.parse(data)
+        displayShopProducts(products)
+      },
+    })
+  })
+
+  $('#shopSearch').keyup(function () {
+    const name = document.querySelector('#shopSearch').value
+    console.log(name)
+    $.ajax({
+      url: `http://localhost/glowguru/shop/name/${name}`,
+      type: 'GET',
+      success: function (data) {
+        console.log(data)
+        const products = JSON.parse(data)
+        displayShopProducts(products)
+      },
+    })
+  })
+
   $('#btnAdd').click(function () {
     $.ajax({
       url: 'http://localhost/glowguru/dashboard/getCategories',
@@ -38,10 +64,36 @@ $(document).ready(function () {
   })
 })
 
+const displayShopProducts = (products) => {
+  const urlroot = 'http://localhost/glowguru'
+  const container = document.querySelector('#shopContainer')
+  container.innerHTML = ''
+  products.forEach((product) => {
+    console.log(product)
+    container.innerHTML += `
+        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow group hover:scale-105 transition duration-150 overflow-hidden">
+            <a href="${urlroot}/shop/product/${product.id}" class="relative ">
+                <img class="rounded-t-lg group-hover:scale-105 transistion duration-100 max-h-[200px] w-full" src="${product.image}" alt="product image" />
+                <div class="bg-primary bg-opacity-0 w-full h-full group-hover:bg-opacity-40 transistion duration-100 absolute inset-0 rounded-t-lg"></div>
+            </a>
+            <div class="px-5 pb-5 mt-4">
+                <a href="${urlroot}/shop/product/${product.id}">
+                    <h5 class="text-md font-semibold tracking-tight ">${product.name.slice(0, 40)} ... (<span class="text-xs text-gray-400 ">${product.category}</span>)</h5>
+                </a>
+
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xl font-bold text-gray-900 ">$${product.price}</span>
+                    <a href="${urlroot}/shop/product/${product.id}" class="text-white font-medium rounded-lg text-sm bg-primary hover:bg-sec transition duration-100 px-5 py-2 ">View </a>
+                </div>
+            </div>
+        </div>
+        `
+  })
+}
+
 const addCategoriesToMyForm = (categories) => {
   const select = document.querySelectorAll('.select_cat')
   select.forEach((item) => {
-    
     categories.forEach((category) => {
       item.innerHTML += `
                 <option value="${category.id}">${category.name_cat}</option>
@@ -113,11 +165,15 @@ const displayProducts = (products) => {
             ${product.price}
         </td>
         <td class="px-6 py-4">
-            ${product.description} ...
+            ${product.description.slice(0, 30)} ...
         </td>
         <td class="px-6 py-4 flex flex-col sm:flex-row items-center gap-1">
-            <a href="${urlroot}/dashboard/edit/${product.id}" class=" text-sm font-medium text-white bg-blue-500 px-3 py-2 rounded-md"><i class="fa-solid fa-pen mr-1 text-xs"></i> Edit</a>
-            <a href="${urlroot}/dashboard/delete/${product.id}" class=" text-sm font-medium text-white bg-red-500 px-3 py-2 rounded-md"><i class="fa-solid fa-trash mr-1 text-xs"></i> Delete</a>
+            <a href="${urlroot}/dashboard/edit/${
+      product.id
+    }" class=" text-sm font-medium text-white bg-blue-500 px-3 py-2 rounded-md"><i class="fa-solid fa-pen mr-1 text-xs"></i> Edit</a>
+            <a href="${urlroot}/dashboard/delete/${
+      product.id
+    }" class=" text-sm font-medium text-white bg-red-500 px-3 py-2 rounded-md"><i class="fa-solid fa-trash mr-1 text-xs"></i> Delete</a>
         </td>
     </tr>
         `

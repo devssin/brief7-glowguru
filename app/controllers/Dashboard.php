@@ -18,10 +18,12 @@ class Dashboard extends Controller
     {
         $products = $this->productModel->getProducts();
         $categories = $this->categoryModel->getCategories();
+        $statistics = $this->statistics();
 
         $data = [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'statistics' => $statistics
         ];
         $this->view('dashboard/index', $data);
     }
@@ -46,6 +48,17 @@ class Dashboard extends Controller
         }
         $data = json_encode($products);
         echo $data;
+    }
+
+    public function statistics()
+    {
+        $productCount = $this->productModel->getTotal();
+        $categoryCount = $this->categoryModel->getTotal();
+        $statistics = [
+            'productCount' => $productCount->totalProd,
+            'categoryCount' => $categoryCount->totalCat
+        ];
+        return $statistics;
     }
 
     public function getCategories()
@@ -110,9 +123,7 @@ class Dashboard extends Controller
                     $data['errors'] = $data['errors'] . '<br>Category must be selected';
                 }
 
-                // var_dump($data['errors']);
-                // die();
-
+               
 
 
 
@@ -126,7 +137,7 @@ class Dashboard extends Controller
                         die('somthing went wrong');
                     }
                 } else {
-                    flash('Errors', $data['errors'], 'p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400');
+                    flash('Errors', $data['errors'], 'p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50');
                     $this->view('dashboard/add', $data);
                     break;
                 }
