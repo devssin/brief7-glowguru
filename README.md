@@ -9,4 +9,4 @@
 <br>
 
 ## Diagramme de Class :
-![Class](./uml/Class.jpg)
+![Class](./uml/ClassDiagram.jpg)
